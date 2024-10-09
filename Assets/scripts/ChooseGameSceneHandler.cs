@@ -106,6 +106,7 @@ public class ChooseGameSceneHandler : MonoBehaviour
 {
     public GameObject toggleGroup;  // Reference to the ToggleGroup in the scene
     public Button playButton;   // Reference to the Play Button
+    public Button changeMech;   // Reference to the Play Button
 
     private bool toggleSelected = false;  // Variable to track if any toggle is selected
     private string selectedGame;  // Stores the currently selected game
@@ -115,6 +116,7 @@ public class ChooseGameSceneHandler : MonoBehaviour
         // Attach listeners to the toggles and Play button
         AttachToggleListeners();
         playButton.onClick.AddListener(OnPlayButtonClicked);
+       changeMech.onClick.AddListener(OnPlayButtonClickedx);
         DeselectAllToggles();  // Reset all toggles at the start
     }
 
@@ -174,6 +176,12 @@ public class ChooseGameSceneHandler : MonoBehaviour
         {
             Debug.Log("No game selected. Please select a game.");
         }
+    }
+
+    private void OnPlayButtonClickedx()
+    {
+        SceneManager.LoadScene("chooseMech");
+        
     }
 
     // Load the corresponding scene based on selected game

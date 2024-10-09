@@ -380,7 +380,7 @@
 //                onceReached = true;
 //                // Debug.Log("Decreasing");
 
-//                if (Mathf.Abs(targetAngle - AppData.plutoData.angle) > 3 && initialDirection != getDirection())
+//                if (Mathf.Abs(targetAngle - PlutoComm.angle) > 3 && initialDirection != getDirection())
 //                {
 
 //                    reduceOppositeTimer += Time.deltaTime;

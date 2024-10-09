@@ -33,10 +33,10 @@ public class calibrationSceneHandler : MonoBehaviour
          PerformCalibration();
         }
 
-        if (ConnectToRobot.isPLUTO && !connect)
+        if (ConnectToRobot.isPLUTO)
         {
             PlutoComm.OnButtonReleased += onPlutoButtonReleased;
-            connect = true;
+            //connect = true;
         }
 
         if (isCalibrating)
@@ -57,6 +57,7 @@ public class calibrationSceneHandler : MonoBehaviour
         switch (selectedMechanism)
         {
             case "HOC":
+                Debug.Log("HOC CALIBRATION");
                 StartCoroutine(autoCalibrateHOC());
                 break;
 
