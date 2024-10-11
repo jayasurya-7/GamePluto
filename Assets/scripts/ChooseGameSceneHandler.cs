@@ -180,7 +180,10 @@ public class ChooseGameSceneHandler : MonoBehaviour
 
     private void OnPlayButtonClickedx()
     {
+        //Time.timeScale = 1;
+
         SceneManager.LoadScene("chooseMech");
+        Debug.Log("TimeScale value:" + Time.timeScale);
         
     }
 

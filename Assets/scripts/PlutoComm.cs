@@ -233,6 +233,8 @@ public static class PlutoComm
         }
     }
 
+
+
     public static float getHOCDisplay(float angle)
     {
         return (float)HOCScale * Math.Abs(angle);

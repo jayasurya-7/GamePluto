@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using static AppData;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class MechanismSceneHandler : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class MechanismSceneHandler : MonoBehaviour
     void Start()
     {
         //AttachToggleListeners();
+
+        EventSystem.current.SetSelectedGameObject(null);
+        Time.timeScale = 1.0f;
         string csvPath = Application.dataPath + "/data/sessions/sessions.csv";
         SessionDataHandler sessionHandler = new SessionDataHandler(csvPath);
         Dictionary<string, double> mechanismTimes = sessionHandler.CalculateTotalTimeForMechanisms(DateTime.Now);
