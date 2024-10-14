@@ -89,6 +89,7 @@ public class calibrationSceneHandler : MonoBehaviour
         textMessage.text = "Calibrating...";
  
         float currentDistance = PlutoComm.getHOCDisplay(PlutoComm.angle);
+        Debug.Log("Current Distance:"+ currentDistance);
 
         ApplyTorqueToMoveHandles(currentDistance, togetherPosition);
         yield return new WaitForSeconds(1.0f);
@@ -115,7 +116,7 @@ public class calibrationSceneHandler : MonoBehaviour
         PlutoComm.setControlType(PlutoComm.CONTROLTYPE[0]);
         //SceneManager.LoadScene("choosegame");
 
-        Invoke("LoadNextScene", 1.0f);
+        Invoke("LoadNextScene", 0.4f);
     }
 
     void LoadNextScene()

@@ -35,9 +35,7 @@ public class MechanismSceneHandler : MonoBehaviour
 
     void Start()
     {
-        //AttachToggleListeners();
-
-        EventSystem.current.SetSelectedGameObject(null);
+       
         Time.timeScale = 1.0f;
         string csvPath = Application.dataPath + "/data/sessions/sessions.csv";
         SessionDataHandler sessionHandler = new SessionDataHandler(csvPath);

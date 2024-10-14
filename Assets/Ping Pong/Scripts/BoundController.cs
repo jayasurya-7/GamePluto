@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SocialPlatforms;
 
 public class BoundController : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class BoundController : MonoBehaviour
             {
                 playAudio(1);
                 enemyScore++;
+
+                Debug.Log("enemyWINSCORE" + enemyScore);
+               
             }
             else
             {

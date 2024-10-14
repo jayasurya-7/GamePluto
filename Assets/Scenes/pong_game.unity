@@ -589,12 +589,13 @@ MonoBehaviour:
   rightBound: {fileID: 124408750}
   leftBound: {fileID: 270847921}
   isFinished: 0
+  isPressed: 0
   playerWon: 0
   enemyWon: 0
   audioClips:
   - {fileID: 8300000, guid: 5e216fee1eec91144bc9920b1dd5ede8, type: 3}
   - {fileID: 8300000, guid: 6abc18bf19117c14eae3dfefa6d7da95, type: 3}
-  winScore: 5
+  winningScore: 7
   win: 0
 --- !u!82 &206402967
 AudioSource:
@@ -1014,7 +1015,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 1.32, z: 0}
-  m_LocalScale: {x: 0.2, y: 2.7, z: 1}
+  m_LocalScale: {x: 0.2, y: 2.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2161,7 +2162,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.2, y: 20}
+  m_Size: {x: 0.2, y: 10}
   m_EdgeRadius: 0
 --- !u!4 &856695316
 Transform:
@@ -3948,8 +3949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 62}
-  m_SizeDelta: {x: 480, y: 44}
+  m_AnchoredPosition: {x: 9.120001, y: 70.2421}
+  m_SizeDelta: {x: 621.76, y: 42.1684}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2003664840
 MonoBehaviour:
@@ -3973,10 +3974,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a200486be81fc405b9cea483b62982e9, type: 3}
-    m_FontSize: 25
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
@@ -3984,7 +3985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hit P to play or pause '
+  m_Text: 'Hit P or Button to play or pause '
 --- !u!222 &2003664841
 CanvasRenderer:
   m_ObjectHideFlags: 0

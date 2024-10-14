@@ -14,35 +14,16 @@ public class PongPlayerController : MonoBehaviour
 
     public static float playSize;
     public static float[] rom;
-    //  public static int FlipAngle = 1;
-    //public static float tempRobot, tempBird;
-
     public float ballTrajetoryPrediction;
-
     public static int reps;
 
-
-    private void Awake()
-    {
-        //AppData.game = "PING PONG";
-        //if(AppData.subjd.side == "LEFT")
-        //{
-        //    this.transform.position = new Vector2(-6,0);
-        //}
-
-    }
-    // Use this for initialization
     void Start()
     {
         playSize = Camera.main.orthographicSize;
         AppData.reps = 0;
-
-        //AppData.timeOnTrail = 0;
         Time.timeScale = 0;
         topBound = playSize - this.transform.localScale.y / 4;
         bottomBound = -topBound;
-        //calculateROM();
-        //AppData.WriteTrainingSummaryFile(5, 10);
     }
 
 
@@ -50,19 +31,7 @@ public class PongPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Angle2Screen(AppData.plutoData.angle));
-        //if (Time.time != 0)
-        //{
-        //    AppData.timeOnTrail += Time.deltaTime;
-
-        //    AppData.sessionDuration += Time.deltaTime;
-        //}
-       
-
         this.transform.position = new Vector2(this.transform.position.x, Angle2Screen(PlutoComm.angle));
-
-
-
 
     }
     public static float Angle2Screen(float angle)
@@ -75,8 +44,6 @@ public class PongPlayerController : MonoBehaviour
         return Mathf.Clamp(-playSize + (angle - tmin) * (2 * playSize) / (tmax - tmin), bottomBound, topBound);
 
     }
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Target")

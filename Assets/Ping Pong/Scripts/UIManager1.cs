@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using static AppData;
+using UnityEditor.SearchService;
 
 public class UIManager1 : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class UIManager1 : MonoBehaviour
     public AudioClip[] audioClips; // winlevel loose
     public int winScore = 7;
     public int win;
+    public static bool isButtonPressed=false;
     // Use this for initialization
     void Start()
     {
@@ -24,20 +27,16 @@ public class UIManager1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //Debug.Log(AppData.inputPressed());
-
-
-
-        //if (AppData.inputPressed() || Input.GetKeyDown(KeyCode.Return))
-        //{
-
-
-
-        //    LoadLevel("pong_game");
-        //}
-
-
+        if (ConnectToRobot.isPLUTO)
+        {
+            PlutoComm.OnButtonReleased += onPlutoButtonReleased;
+            //connect = true;
+        }
+        if (isButtonPressed)
+        {
+            LoadNextScene();
+            isButtonPressed = false;
+        }
 
     }
 
@@ -113,6 +112,17 @@ public class UIManager1 : MonoBehaviour
     {
 
         SceneManager.LoadSceneAsync(level);
+    }
+    public void onPlutoButtonReleased()
+    {
+        
+            isButtonPressed = true;
+      
+    }
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene("pong_game");
+
     }
 
 }

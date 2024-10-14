@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 public class UIManagerPP : MonoBehaviour
 {
@@ -9,31 +10,30 @@ public class UIManagerPP : MonoBehaviour
     public BoundController rightBound;
     public BoundController leftBound;
     public bool isFinished;
+    public bool isPressed=false;
     public bool playerWon, enemyWon;
     public AudioClip[] audioClips; // winlevel loose
-    public int winScore = 7;
+    public int winningScore = 7;
     public int win;
     // Use this for initialization
     void Start()
     {
+        PlutoComm.OnButtonReleased += onPlutoButtonReleased;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         finishObjects = GameObject.FindGameObjectsWithTag("ShowOnFinish");
         hideFinished();
-        //vdc.customPath = false;
-        //vdc.customPathFolder = "";
-        //vdc.filePath = AppData.GameVideoLog(AppData.subjHospNum, AppData.plutoData.mechs[AppData.plutoData.mechIndex], AppData.game, AppData.regime);
-        ////   Debug.Log(vdc.filePath);
-        //vdc.StartCapture();
-
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
-        if (rightBound.enemyScore >= winScore && !isFinished)
+        Debug.Log("SCORE" + winningScore);
+        if (rightBound.enemyScore >= winningScore && !isFinished)
         {
+
+            Debug.Log("WINSCORE" + winningScore);
+            Debug.Log("rXWINSCORE" + rightBound.enemyScore);
             isFinished = true;
             enemyWon = true;
             Camera.main.GetComponent<AudioSource>().Stop();
@@ -51,9 +51,11 @@ public class UIManagerPP : MonoBehaviour
             //AppData.timeOnTrail = 0;
             AppData.reps = 0;
         }
-        else if (leftBound.playerScore >= winScore && !isFinished
-            )
+        else if (leftBound.playerScore >= winningScore && !isFinished)
         {
+            Debug.Log("WINSCORE" + winningScore);
+            Debug.Log("XWINSCORE" + leftBound.playerScore);
+
             Camera.main.GetComponent<AudioSource>().Stop();
             //AppData.DifficultyManager(1);
             //AppData.writeGamePerformace();
@@ -78,26 +80,7 @@ public class UIManagerPP : MonoBehaviour
         {
             showFinished();
         }
-        //if (isFinished && AppData.inputPressed())
-        //{
-        //    LoadScene("pong_menu");
-        //}
-
-
-        //uses the p button to pause and unpause the game
-        //if ((AppData.inputPressed() || Input.GetKeyDown(KeyCode.P)) && !isFinished)
-        //{
-        //    if (Time.timeScale == 1)
-        //    {
-        //        Time.timeScale = 0;
-        //        showPaused();
-        //    }
-        //    else if (Time.timeScale == 0)
-        //    {
-        //        Time.timeScale = 1;
-        //        hidePaused();
-        //    }
-        //}
+        
 
         if (Input.GetKeyDown(KeyCode.P) && !isFinished)
         {
@@ -112,6 +95,25 @@ public class UIManagerPP : MonoBehaviour
             {
                 Time.timeScale = 1; // Unpause the game
                 Debug.Log("Game Unpaused");
+                hidePaused();
+            }
+        }
+
+        if (isPressed && !isFinished)
+        {
+            Debug.Log("P key pressed. Current Time.timeScale: " + Time.timeScale);
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0; // Pause the game
+                Debug.Log("Game Paused");
+                isPressed = false;
+                showPaused();
+            }
+            else if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1; // Unpause the game
+                Debug.Log("Game Unpaused");
+                isPressed = false;
                 hidePaused();
             }
         }
@@ -140,8 +142,12 @@ public class UIManagerPP : MonoBehaviour
             }
         }
     }
-    //Reloads the Level
-    public void LoadScene(string sceneName)
+    private void onPlutoButtonReleased()
+    {
+        isPressed = true;
+    }
+        //Reloads the Level
+        public void LoadScene(string sceneName)
     {
        SceneManager.LoadScene(sceneName);
     }
@@ -193,8 +199,6 @@ public class UIManagerPP : MonoBehaviour
     //shows objects with ShowOnFinish tag
     public void showFinished()
     {
-
-
         foreach (GameObject g in finishObjects)
         {
             g.SetActive(true);
